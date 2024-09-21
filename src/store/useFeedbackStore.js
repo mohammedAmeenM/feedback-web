@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 //manage feedback 
-const useFeedbackStore = create((set) => ({
+const useFeedbackStore = create((set)=>({
   formData: {
     name: '',
     contactNumber: '',
@@ -11,20 +11,20 @@ const useFeedbackStore = create((set) => ({
   },
 
 // feedbacks array store the submitted feedback-------
-  feedbacks: [], 
+  feedbacks:[], 
 
   // function to set form data--------
 
-  setFormData: (field, value) => set((state) => ({
-    formData: { ...state.formData, [field]: value },
+  setFormData:(field, value)=>set((state) => ({
+    formData:{ ...state.formData, [field]: value },
   })),
 
   // add the form data to the feedbacks list---------
-  addFeedback: () => set((state) => ({
+  addFeedback:()=>set((state) =>({
     feedbacks: [...state.feedbacks, state.formData],
 
     // reset form after submission
-    formData: { name: '', contactNumber: '', emailAddress: '', rating: 0, comments: '' }, 
+    formData:{name: '',contactNumber:'',emailAddress: '',rating: 0, comments: ''}, 
   })),
 }));
 

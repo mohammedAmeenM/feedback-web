@@ -9,19 +9,19 @@ function FeedbackList() {
   const { feedbacks } = useFeedbackStore();
 
   // set the rating in image and label-------
-  const getFeedbackRatingInfo = (rating) => {
-    if (rating >= 0 && rating <= 20) {
-      return { label: 'Worst', image: Worst };
-    } else if (rating >= 21 && rating <= 40) {
-      return { label: 'Not Good', image: NotGood };
-    } else if (rating >= 41 && rating <= 60) {
-      return { label: 'Fine', image: Fine };
-    } else if (rating >= 61 && rating <= 80) {
-      return { label: 'Look Good', image: LookGood };
-    } else if (rating >= 81 && rating <= 100) {
-      return { label: 'Very Good', image: VeryGood };
+  const getFeedbackRatingInfo =(rating)=>{
+    if(rating>=0 &&rating<=20) {
+      return { label:'Worst',image:Worst };
+    }else if (rating>=21 &&rating<= 40) {
+      return { label:'Not Good',image:NotGood};
+    }else if (rating >=41 &&rating<= 60){
+      return { label:'Fine',image:Fine };
+    }else if (rating >= 61 && rating <= 80){
+      return { label: 'Look Good',image: LookGood };
+    }else if (rating >= 81 && rating <= 100){
+      return { label:'Very Good',image: VeryGood };
     }
-    return { label: '', image: null };
+    return{ label: '', image: null };
   };
 
   return (
