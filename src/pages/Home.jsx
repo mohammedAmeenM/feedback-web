@@ -8,8 +8,8 @@ const Home = () => {
       <div className=" lg:w-1/2 md:w-full lg:h-[650px]">
       <FeedbackList />
       </div>
-    </div>
+    </div> 
   );
 };
 
-export default Home;
+export default Home; 
