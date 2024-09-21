@@ -1,4 +1,3 @@
-// Import images from assets
 import Worst from '../../assets/worst.png';
 import NotGood from '../../assets/notgood.png';
 import Fine from '../../assets/fine.png';
@@ -10,8 +9,7 @@ import validationSchema from '../../utils/validationSchema';
 
 function FeedbackForm() {
   const { formData, setFormData, addFeedback } = useFeedbackStore();
-  
-//set the values formData
+
   const handleSubmit = (values) => {
     setFormData("name", values.name);
     setFormData("contactNumber", values.contactNumber);
@@ -21,45 +19,40 @@ function FeedbackForm() {
     addFeedback();
   };
 
-
   return (
-    <div className="max-w-md  mx-auto p-6 h-full bg-white rounded-lg shadow-md">
-      <h2 className="text-sm text-[#2071B2] mb-4">
-        Please Provide Your Feedback
-      </h2>
+    <div className="w-full md:w-1/2 lg:w-1/3  h-full bg-white p-6 rounded-lg shadow-lg">
+      <h2 className="text-sm text-[#2071B2]  mb-4">Please Provide Your Feedback</h2>
       <Formik
         initialValues={formData}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
-          resetForm(); 
+          resetForm();
         }}
       >
         {({ values, handleChange }) => (
           <Form>
             <div className="grid grid-cols-1 gap-4">
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm text-[#2071B2] font-bold mb-2">
-                    Name
-                  </label>
+                <div className='mb-2'>
+                  <label className="block text-sm text-[#2071B2] font-bold mb-2">Name</label>
                   <Field
                     type="text"
                     name="name"
-                    className="w-full px-3 py-2 border-2 text-sm placeholder:text-[12px] rounded-lg shadow-md border-[#888888] focus:outline-none focus:ring-[#105955] focus:border-[#105955]"
+                    className="w-full px-3 py-2 border-2 text-sm placeholder:text-[12px] rounded-lg shadow-md border-[#888888] focus:outline-none focus:ring-[#105955] focus:border-[#105955] "
                     placeholder="Name..."
                   />
-                  <ErrorMessage name="name" component="div" className="text-red-600 text-[10px]" />
+                  <ErrorMessage name="name" component="div" className="text-red-600 text-xs" />
                 </div>
                 <div>
                   <label className="block text-sm text-[#2071B2] font-bold mb-2">Contact Number</label>
                   <Field
                     type="tel"
                     name="contactNumber"
-                    className="w-full px-3 py-2 border-2 text-sm placeholder:text-[12px] rounded-lg shadow-md border-[#888888] focus:outline-none focus:ring-[#105955] focus:border-[#105955]"
+                     className="w-full px-3 py-2 border-2 text-sm placeholder:text-[12px] rounded-lg shadow-md border-[#888888] focus:outline-none focus:ring-[#105955] focus:border-[#105955]"
                     placeholder="+91 00000 00000"
                   />
-                  <ErrorMessage name="contactNumber" component="div" className="text-red-600 text-[10px]" />
+                  <ErrorMessage name="contactNumber" component="div" className="text-red-600 text-xs" />
                 </div>
               </div>
               <div>
@@ -67,35 +60,28 @@ function FeedbackForm() {
                 <Field
                   type="email"
                   name="emailAddress"
-                  className="w-1/2 px-3 py-2 border-2 text-sm placeholder:text-[12px] rounded-lg shadow-md border-[#888888] focus:outline-none focus:ring-[#105955] focus:border-[#105955]"
+                  className="w-1/2 px-3 py-2 border-2 mb-4 text-sm placeholder:text-[12px] rounded-lg shadow-md border-[#888888] focus:outline-none focus:ring-[#105955] focus:border-[#105955]"
                   placeholder="xyz123@gmail.com"
                 />
-                <ErrorMessage name="emailAddress" component="div" className="text-red-600 text-[10px]" />
+                <ErrorMessage name="emailAddress" component="div" className="text-red-600 text-xs" />
               </div>
               <div>
-                <label className="block text-sm text-[#2071B2] font-bold mb-2">Share your experience in scaling </label>
-                <div className="flex justify-center space-x-3">
+                <label className="block text-sm text-[#2071B2] font-bold mb-4">Share your experience in scaling</label>
+                <div className="flex justify-center space-x-5">
                   {["Worst", "Not Good", "Fine", "Look Good", "Very Good"].map((label, index) => {
                     return (
-                      <div
-                      key={index}
-                      className="flex flex-col items-center space-y-3 px-2 "
-                      style={{
-                        opacity: 1,
-                        transition: 'opacity 0.3s',
-                      }}
-                    >
-                      <img
-                        src={[Worst, NotGood, Fine, LookGood, VeryGood][index]}
-                        className={`w-[40px] text-center `}
-                        style={{
-                          filter:
-                            (values.rating === 100 && index === 4) ||values.rating > 0 && index === Math.floor(values.rating / 20)
-                              ? 'none' 
-                              : 'grayscale(100%)', 
-                        }}
-                        alt={label}
-                      />
+                      <div key={index} className="flex flex-col items-center space-y-2 lg:px-3 px-1 gap-2 mt-1 mb-1">
+                        <img
+                          src={[Worst, NotGood, Fine, LookGood, VeryGood][index]}
+                          className={`w-8 h-8`}
+                          style={{
+                            filter:
+                              (values.rating === 100 && index === 4) ||values.rating > 0 && index === Math.floor(values.rating / 20)
+                                ? 'none' 
+                                : 'grayscale(100%)', 
+                          }}
+                          alt={label}
+                        />
                       <p
                         className={`text-[12px]  font-bold text-center`}
                         style={{
@@ -107,9 +93,7 @@ function FeedbackForm() {
                       >
                         {label}
                       </p>
-                    </div>
-                    
-                    
+                      </div>
                     );
                   })}
                 </div>
@@ -117,13 +101,13 @@ function FeedbackForm() {
                   type="range"
                   name="rating"
                   onChange={handleChange}
-                  className="w-full h-2 rounded-lg appearance-none bg-[#A5E0DD] mt-4"
+                  className="w-full h-2 rounded-lg appearance-none bg-[#A5E0DD] mt-4 mb-6"
                   style={{
                     background: `linear-gradient(to right, #105955 ${values.rating}%, #A5E0DD ${values.rating}%)`,
                     WebkitAppearance: "none",
                   }}
                 />
-                <ErrorMessage name="rating" component="div" className="text-red-600 text-[10px]" />
+                <ErrorMessage name="rating" component="div" className="text-red-600 text-xs" />
                 <style>{`
                   input[type="range"]::-webkit-slider-thumb {
                     appearance: none;
@@ -142,21 +126,18 @@ function FeedbackForm() {
                   }
                 `}</style>
               </div>
-              <div>
+              <div className='mb-4'>
                 <Field
                   as="textarea"
                   name="comments"
-                  className="w-full px-3 py-2 border-2 placeholder:text-[12px] rounded-md shadow-md border-[#888888] focus:outline-none focus:ring-[#105955] focus:border-[#105955]"
+                  className="w-full h-full px-3 py-2 border-2 placeholder:text-[12px] rounded-xl  shadow-md border-[#888888] focus:outline-none focus:ring-[#105955] focus:border-[#105955]"
                   placeholder="Add your comments..."
                 />
-                <ErrorMessage name="comments" component="div" className="text-red-600 text-[10px]" />
+                <ErrorMessage name="comments" component="div" className="text-red-600 text-xs " />
               </div>
             </div>
-            <div className="text-center mt-4">
-              <button
-                type="submit"
-                className="bg-[#20B2AA] text-sm w-full text-white font-bold py-2 px-4 rounded"
-              >
+            <div className="mt-4 text-center"> 
+              <button type="submit" className="w-full bg-[#20B2AA] text-white font-bold py-2 rounded-lg">
                 SUBMIT
               </button>
             </div>
