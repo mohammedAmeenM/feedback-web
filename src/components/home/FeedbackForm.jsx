@@ -8,8 +8,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import validationSchema from '../../utils/validationSchema';
 
 function FeedbackForm() {
+  //destructure the store values-----
   const { formData, setFormData, addFeedback } = useFeedbackStore();
 
+
+//set the formdata ------
   const handleSubmit = (values) => {
     setFormData("name", values.name);
     setFormData("contactNumber", values.contactNumber);
@@ -27,7 +30,7 @@ function FeedbackForm() {
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
-          resetForm();
+          resetForm(); //reset ---
         }}
       >
         {({ values, handleChange }) => (

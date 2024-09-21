@@ -8,6 +8,7 @@ import useFeedbackStore from '../../store/useFeedbackStore';
 function FeedbackList() {
   const { feedbacks } = useFeedbackStore();
 
+  // set the rating in image and label-------
   const getFeedbackRatingInfo = (rating) => {
     if (rating >= 0 && rating <= 20) {
       return { label: 'Worst', image: Worst };
